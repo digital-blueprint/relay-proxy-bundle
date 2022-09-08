@@ -1,0 +1,10 @@
+services:
+  Dbp\Relay\ProxyBundle\DataProvider\:
+    resource: '../../DataProvider'
+    autowire: true
+    autoconfigure: true
+
+  Dbp\Relay\ProxyBundle\DataPersister\:
+    resource: '../../DataPersister'
+    autowire: true
+    autoconfigure: true
