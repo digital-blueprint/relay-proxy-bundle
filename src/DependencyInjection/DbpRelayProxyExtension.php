@@ -18,6 +18,15 @@ class DbpRelayProxyExtension extends ConfigurableExtension
     {
         $this->addResourceClassDirectory($container, __DIR__.'/../Entity');
 
+        $pathsToHide = [
+            '/proxy/proxydata/{identifier}',
+            '/proxy/proxydata',
+        ];
+
+        foreach ($pathsToHide as $path) {
+            $this->addPathToHide($container, $path);
+        }
+
         $loader = new YamlFileLoader(
             $container,
             new FileLocator(__DIR__.'/../Resources/config')
