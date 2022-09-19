@@ -147,7 +147,7 @@ class ProxyData
         $this->errors = $errors;
     }
 
-    public function getFunctionName(): string
+    public function getFunctionName(): ?string
     {
         return $this->functionName;
     }
@@ -157,7 +157,7 @@ class ProxyData
         $this->functionName = $functionName;
     }
 
-    public function getNamespace(): string
+    public function getNamespace(): ?string
     {
         return $this->namespace;
     }

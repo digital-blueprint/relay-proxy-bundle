@@ -14,13 +14,33 @@ class ProxyDataEvent extends Event
     /** @var ProxyData */
     private $proxyData;
 
+    /** @var bool */
+    private $wasHandled;
+
     public function __construct(ProxyData $proxyData)
     {
         $this->proxyData = $proxyData;
+        $this->wasHandled = false;
     }
 
     public function getProxyData(): ProxyData
     {
         return $this->proxyData;
+    }
+
+    /**
+     * Indicate, that the event was handled, e.g. there was an event subscriber for the requested proxy data namespace.
+     */
+    public function setHandled(): void
+    {
+        $this->wasHandled = true;
+    }
+
+    /**
+     * True, if the event was handled, e.g. there was an event subscriber for the requested proxy data namespace, false otherwise.
+     */
+    public function wasHandled(): bool
+    {
+        return $this->wasHandled;
     }
 }
