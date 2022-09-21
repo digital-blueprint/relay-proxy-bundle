@@ -19,6 +19,7 @@ final class ProxyDataCollectionDataProvider extends AbstractController implement
     public function getCollection(string $resourceClass, string $operationName = null, array $context = []): iterable
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_SCOPE_API-PROXY');
 
         return [];
     }

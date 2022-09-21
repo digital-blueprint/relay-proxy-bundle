@@ -12,7 +12,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *     collectionOperations={
  *         "post" = {
- *             "security" = "is_granted('IS_AUTHENTICATED_FULLY')",
  *             "path" = "/proxy/proxydata",
  *             "openapi_context" = {
  *                 "tags" = {"Proxy"},
@@ -26,7 +25,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *             }
  *         },
  *         "get" = {
- *             "security" = "is_granted('IS_AUTHENTICATED_FULLY')",
  *             "path" = "/proxy/proxydata",
  *             "openapi_context" = {
  *                 "tags" = {"Proxy"},

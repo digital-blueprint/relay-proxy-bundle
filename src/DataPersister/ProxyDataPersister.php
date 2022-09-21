@@ -33,6 +33,7 @@ class ProxyDataPersister extends AbstractController implements ContextAwareDataP
     public function persist($data, array $context = []): ProxyData
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_SCOPE_API-PROXY');
 
         if (Tools::isNullOrEmpty($data->getNamespace())) {
             throw new BadRequestException('parameter namespace must not be null nor empty');
@@ -55,5 +56,6 @@ class ProxyDataPersister extends AbstractController implements ContextAwareDataP
     public function remove($data, array $context = []): void
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_SCOPE_API-PROXY');
     }
 }
