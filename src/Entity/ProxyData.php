@@ -6,13 +6,14 @@ namespace Dbp\Relay\ProxyBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Dbp\Relay\CoreBundle\ProxyApi\ProxyDataInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
  *     collectionOperations={
  *         "post" = {
- *             "security" = "is_granted('IS_AUTHENTICATED_FULLY')",
+ *             "security" = "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')",
  *             "path" = "/proxy/proxydata",
  *             "openapi_context" = {
  *                 "tags" = {"Proxy"},
@@ -52,7 +53,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * )
  */
-class ProxyData
+class ProxyData implements ProxyDataInterface
 {
     /**
      * @ApiProperty(identifier=true)
