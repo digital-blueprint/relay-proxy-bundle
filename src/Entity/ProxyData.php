@@ -27,7 +27,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *             }
  *         },
  *         "get" = {
- *             "security" = "is_granted('IS_AUTHENTICATED_FULLY')",
+ *             "security" = "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')",
  *             "path" = "/proxy/proxydata",
  *             "openapi_context" = {
  *                 "tags" = {"Proxy"},
@@ -36,6 +36,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     itemOperations={
  *         "get" = {
+ *             "security" = "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')",
  *             "path" = "/proxy/proxydata/{identifier}",
  *             "openapi_context" = {
  *                 "tags" = {"Proxy"}

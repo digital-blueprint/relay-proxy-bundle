@@ -19,6 +19,7 @@ final class ProxyDataItemDataProvider extends AbstractController implements Item
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?ProxyData
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('ROLE_SCOPE_API-PROXY');
 
         return null;
     }
