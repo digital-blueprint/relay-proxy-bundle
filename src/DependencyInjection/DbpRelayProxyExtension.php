@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dbp\Relay\ProxyBundle\DependencyInjection;
 
 use Dbp\Relay\CoreBundle\Extension\ExtensionTrait;
+use Dbp\Relay\ProxyBundle\Authorization\AuthorizationService;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -32,5 +33,8 @@ class DbpRelayProxyExtension extends ConfigurableExtension
             new FileLocator(__DIR__.'/../Resources/config')
         );
         $loader->load('services.yaml');
+
+        $definition = $container->getDefinition(AuthorizationService::class);
+        $definition->addMethodCall('setConfig', [$mergedConfig['authorization']]);
     }
 }

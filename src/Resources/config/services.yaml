@@ -1,4 +1,8 @@
 services:
+  Dbp\Relay\ProxyBundle\Authorization\AuthorizationService:
+    autowire: true
+    autoconfigure: true
+
   Dbp\Relay\ProxyBundle\DataProvider\:
     resource: '../../DataProvider'
     autowire: true

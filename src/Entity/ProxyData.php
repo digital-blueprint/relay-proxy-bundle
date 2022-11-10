@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *     collectionOperations={
  *         "post" = {
- *             "security" = "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')",
+ *             "security" = "is_granted('IS_AUTHENTICATED_FULLY')",
  *             "path" = "/proxy/proxydata",
  *             "openapi_context" = {
  *                 "tags" = {"Proxy"},
