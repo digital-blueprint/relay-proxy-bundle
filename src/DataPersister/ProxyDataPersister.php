@@ -8,6 +8,7 @@ use ApiPlatform\Core\DataPersister\ContextAwareDataPersisterInterface;
 use Dbp\Relay\CoreBundle\Helpers\Tools;
 use Dbp\Relay\CoreBundle\ProxyApi\ProxyDataEvent;
 use Dbp\Relay\ProxyBundle\Authorization\AuthorizationService;
+use Dbp\Relay\ProxyBundle\DependencyInjection\Configuration;
 use Dbp\Relay\ProxyBundle\Entity\ProxyData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -45,7 +46,7 @@ class ProxyDataPersister extends AbstractController implements ContextAwareDataP
             } elseif (Tools::isNullOrEmpty($data->getFunctionName())) {
                 throw new BadRequestException('parameter functionName must not be null nor empty');
             } else {
-                $this->authorizationService->denyAccessUnlessIsGranted('CALL_FUNCTION', $data);
+                $this->authorizationService->denyAccessUnlessIsGranted(Configuration::MAY_POST_PROXYDATA, $data);
 
                 $proxyDataEvent = new ProxyDataEvent($data);
                 $this->eventDispatcher->dispatch($proxyDataEvent, ProxyDataEvent::NAME.'.'.$data->getNamespace());

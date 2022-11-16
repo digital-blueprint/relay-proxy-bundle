@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     public const AUTHORIZATON_NODE = 'authorization';
-    public const CALL_FUNCTION_RIGHT = 'CALL_FUNCTION';
+    public const MAY_POST_PROXYDATA = 'MAY_POST_PROXYDATA';
 
     public function getConfigTreeBuilder(): TreeBuilder
     {
@@ -24,8 +24,8 @@ class Configuration implements ConfigurationInterface
                         ->children()
                             ->arrayNode(UserAuthorizationChecker::RIGHTS_CONFIG_ATTRIBUTE)
                                 ->children()
-                                    ->scalarNode(self::CALL_FUNCTION_RIGHT)
-                                    ->info('The (boolean) expression checking whether the current user may call the requested function. Available parameters: user, subject (of type ProxyData)')
+                                    ->scalarNode(self::MAY_POST_PROXYDATA)
+                                    ->info('The (boolean) expression checking whether the current user may post the given proxy data. Available parameters: user, subject (of type ProxyData)')
                                     ->example('user.get("CALL_PROXY_FUNCTIONS") === true || subject.getNamespace() === "public"')
                                 ->end()
                             ->end()

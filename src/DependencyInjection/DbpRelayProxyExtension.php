@@ -35,6 +35,6 @@ class DbpRelayProxyExtension extends ConfigurableExtension
         $loader->load('services.yaml');
 
         $definition = $container->getDefinition(AuthorizationService::class);
-        $definition->addMethodCall('setConfig', [$mergedConfig['authorization']]);
+        $definition->addMethodCall('setConfig', [$mergedConfig[Configuration::AUTHORIZATON_NODE]]);
     }
 }
