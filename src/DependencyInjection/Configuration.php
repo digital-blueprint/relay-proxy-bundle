@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\ProxyBundle\DependencyInjection;
 
-use Dbp\Relay\CoreBundle\Authorization\UserAuthorizationChecker;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -22,7 +21,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode(self::AUTHORIZATON_NODE)
                     ->addDefaultsIfNotSet()
                         ->children()
-                            ->arrayNode(UserAuthorizationChecker::RIGHTS_CONFIG_ATTRIBUTE)
+                            ->arrayNode('rights')
                                 ->children()
                                     ->scalarNode(self::MAY_POST_PROXYDATA)
                                     ->info('The (boolean) expression checking whether the current user may post the given proxy data. Available parameters: user, subject (of type ProxyData)')
