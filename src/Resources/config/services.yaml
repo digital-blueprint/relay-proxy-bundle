@@ -3,12 +3,10 @@ services:
     autowire: true
     autoconfigure: true
 
-  Dbp\Relay\ProxyBundle\DataProvider\:
-    resource: '../../DataProvider'
+  Dbp\Relay\ProxyBundle\DataProvider\ProxyDataProvider:
     autowire: true
     autoconfigure: true
 
-  Dbp\Relay\ProxyBundle\DataPersister\:
-    resource: '../../DataPersister'
+  Dbp\Relay\ProxyBundle\DataPersister\ProxyDataPersister:
     autowire: true
     autoconfigure: true
