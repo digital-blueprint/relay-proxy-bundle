@@ -16,19 +16,18 @@ class ProxyDataProvider extends AbstractDataProvider
         return ProxyData::class;
     }
 
-    protected function getItemById($id, array $options = []): object
+    protected function isUserGrantedOperationAccess(int $operation): bool
     {
-        return new ProxyData();
+        return $this->isUserAuthenticated();
+    }
+
+    protected function getItemById($id, array $filters = [], array $options = []): object
+    {
+        throw ApiError::withDetails(Response::HTTP_NOT_IMPLEMENTED, 'GET operations not implemented for this resource');
     }
 
     protected function getPage(int $currentPageNumber, int $maxNumItemsPerPage, array $filters = [], array $options = []): array
     {
         return [];
-    }
-
-    protected function onOperationStart(int $operation)
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        throw ApiError::withDetails(Response::HTTP_NOT_IMPLEMENTED, 'GET operations not implemented for this resource');
     }
 }
