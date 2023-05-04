@@ -15,7 +15,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $authorizationConfigDefinition = AuthorizationConfigDefinition::create()
-            ->addRole(self::MAY_POST_PROXYDATA, 'false',
+            ->addPolicy(self::MAY_POST_PROXYDATA, 'false',
                 'The (boolean) expression checking whether the current user may post the given proxy data. Available parameters: user, subject (of type ProxyData)');
 
         $treeBuilder = new TreeBuilder('dbp_relay_proxy');
