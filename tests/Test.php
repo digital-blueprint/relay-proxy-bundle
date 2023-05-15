@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\ProxyBundle\Tests;
 
-use PHPUnit\Framework\TestCase;
+use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 
-class Test extends TestCase
+class Test extends ApiTestCase
 {
-    public function testExample()
+    public function testBasics()
     {
-        $this->assertTrue(true);
+        $this->assertNotNull(self::createClient());
     }
 }
