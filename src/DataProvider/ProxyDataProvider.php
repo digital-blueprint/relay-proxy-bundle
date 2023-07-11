@@ -4,21 +4,20 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\ProxyBundle\DataProvider;
 
-use Dbp\Relay\CoreBundle\DataProvider\AbstractDataProvider;
 use Dbp\Relay\CoreBundle\Exception\ApiError;
-use Dbp\Relay\ProxyBundle\Entity\ProxyData;
+use Dbp\Relay\CoreBundle\Rest\AbstractDataProvider;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProxyDataProvider extends AbstractDataProvider
 {
-    protected function getResourceClass(): string
+    public function __construct()
     {
-        return ProxyData::class;
+        parent::__construct();
     }
 
     protected function isUserGrantedOperationAccess(int $operation): bool
     {
-        return $this->isUserAuthenticated();
+        return $this->isAuthenticated();
     }
 
     protected function getItemById($id, array $filters = [], array $options = []): object
