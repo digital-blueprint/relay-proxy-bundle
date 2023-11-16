@@ -1,3 +1,7 @@
+# v0.1.13
+
+* Fix broken service registration. Regression of v0.1.12.
+
 # v0.1.12
 
 * Port to the new api-platform metadata system

@@ -3,6 +3,7 @@ services:
     autowire: true
     autoconfigure: true
 
-  Dbp\Relay\ProxyBundle\DataProvider\ApiPlatform:
+  Dbp\Relay\ProxyBundle\ApiPlatform\:
+    resource: '../../ApiPlatform'
     autowire: true
     autoconfigure: true
