@@ -19,14 +19,14 @@ resources:
 
       ApiPlatform\Metadata\Get:
         security: "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')"
-        provider: Dbp\Relay\SublibraryBundle\ApiPlatform\ProxyDataProvider
+        provider: Dbp\Relay\ProxyBundle\ApiPlatform\ProxyDataProvider
         uriTemplate: "/proxydata/{identifier}"
         openapiContext:
           tags: ["Proxy"]
 
       ApiPlatform\Metadata\Post:
         security: "is_granted('IS_AUTHENTICATED_FULLY')"
-        processor: Dbp\Relay\SublibraryBundle\ApiPlatform\BookOfferProcessor
+        processor: Dbp\Relay\ProxyBundle\ApiPlatform\ProxyDataProcessor
         uriTemplate: "/proxydata"
         openapiContext:
           tags: ["Proxy"]
