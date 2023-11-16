@@ -17,8 +17,6 @@ class DbpRelayProxyExtension extends ConfigurableExtension
 
     public function loadInternal(array $mergedConfig, ContainerBuilder $container)
     {
-        $this->addResourceClassDirectory($container, __DIR__.'/../Entity');
-
         $pathsToHide = [
             '/proxy/proxydata/{identifier}',
             '/proxy/proxydata',

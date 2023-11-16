@@ -1,0 +1,47 @@
+resources:
+  Dbp\Relay\ProxyBundle\ApiPlatform\ProxyData:
+    shortName: "ProxyData"
+    routePrefix: "/proxy"
+    normalizationContext:
+      groups: ["ProxyData:output"]
+      jsonld_embed_context: true
+    denormalizationContext:
+      groups: ["ProxyData:input"]
+
+    operations:
+
+      ApiPlatform\Metadata\GetCollection:
+        security: "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')"
+        provider: Dbp\Relay\ProxyBundle\ApiPlatform\ProxyDataProvider
+        uriTemplate: "/proxydata"
+        openapiContext:
+          tags: ["Proxy"]
+
+      ApiPlatform\Metadata\Get:
+        security: "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')"
+        provider: Dbp\Relay\SublibraryBundle\ApiPlatform\ProxyDataProvider
+        uriTemplate: "/proxydata/{identifier}"
+        openapiContext:
+          tags: ["Proxy"]
+
+      ApiPlatform\Metadata\Post:
+        security: "is_granted('IS_AUTHENTICATED_FULLY')"
+        processor: Dbp\Relay\SublibraryBundle\ApiPlatform\BookOfferProcessor
+        uriTemplate: "/proxydata"
+        openapiContext:
+          tags: ["Proxy"]
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  type: "object"
+
+    properties:
+      identifier:
+        identifier: true
+        iri: "http://schema.org/identifier"
+      arguments:
+      data:
+      errors:
+      functionName:
+      namespace:

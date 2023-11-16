@@ -2,62 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Dbp\Relay\ProxyBundle\Entity;
+namespace Dbp\Relay\ProxyBundle\ApiPlatform;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Dbp\Relay\CoreBundle\ProxyApi\ProxyDataInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-/**
- * @ApiResource(
- *     collectionOperations={
- *         "post" = {
- *             "security" = "is_granted('IS_AUTHENTICATED_FULLY')",
- *             "path" = "/proxy/proxydata",
- *             "openapi_context" = {
- *                 "tags" = {"Proxy"},
- *                 "requestBody" = {
- *                     "content" = {
- *                         "application/json" = {
- *                             "schema" = {"type" = "object"},
- *                         }
- *                     }
- *                 }
- *             }
- *         },
- *         "get" = {
- *             "security" = "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')",
- *             "path" = "/proxy/proxydata",
- *             "openapi_context" = {
- *                 "tags" = {"Proxy"},
- *             },
- *         }
- *     },
- *     itemOperations={
- *         "get" = {
- *             "security" = "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')",
- *             "path" = "/proxy/proxydata/{identifier}",
- *             "openapi_context" = {
- *                 "tags" = {"Proxy"}
- *             },
- *         },
- *     },
- *     shortName="ProxyData",
- *     normalizationContext={
- *         "groups" = {"ProxyData:output"},
- *         "jsonld_embed_context" = true
- *     },
- *     denormalizationContext={
- *         "groups" = {"ProxyData:input"},
- *         "jsonld_embed_context" = true
- *     }
- * )
- */
 class ProxyData implements ProxyDataInterface
 {
     /**
-     * @ApiProperty(identifier=true)
      * @Groups({"ProxyData:output"})
      *
      * @var string
@@ -65,7 +17,6 @@ class ProxyData implements ProxyDataInterface
     private $identifier;
 
     /**
-     * @ApiProperty
      * @Groups({"ProxyData:input"})
      *
      * @var array
@@ -73,7 +24,6 @@ class ProxyData implements ProxyDataInterface
     private $arguments;
 
     /**
-     * @ApiProperty
      * @Groups({"ProxyData:output"})
      *
      * @var mixed|null
@@ -81,7 +31,6 @@ class ProxyData implements ProxyDataInterface
     private $data;
 
     /**
-     * @ApiProperty
      * @Groups({"ProxyData:output"})
      *
      * @var array|null
@@ -89,7 +38,6 @@ class ProxyData implements ProxyDataInterface
     private $errors;
 
     /**
-     * @ApiProperty
      * @Groups({"ProxyData:input"})
      *
      * @var string
@@ -97,7 +45,6 @@ class ProxyData implements ProxyDataInterface
     private $functionName;
 
     /**
-     * @ApiProperty
      * @Groups({"ProxyData:input"})
      *
      * @var string
