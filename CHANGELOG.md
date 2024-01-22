@@ -1,3 +1,7 @@
+# v0.1.14
+
+* Drop support for PHP 7.3
+
 # v0.1.13
 
 * Fix broken service registration. Regression of v0.1.12.
