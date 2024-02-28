@@ -8,6 +8,9 @@ use Dbp\Relay\CoreBundle\Exception\ApiError;
 use Dbp\Relay\CoreBundle\Rest\AbstractDataProvider;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @extends AbstractDataProvider<object>
+ */
 class ProxyDataProvider extends AbstractDataProvider
 {
     public function __construct()
