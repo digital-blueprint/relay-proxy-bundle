@@ -17,7 +17,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 /**
- * @implements ProcessorInterface<ProxyData,mixed>
+ * @psalm-suppress MissingTemplateParam
  */
 class ProxyDataProcessor extends AbstractController implements ProcessorInterface
 {
