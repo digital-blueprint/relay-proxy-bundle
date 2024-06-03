@@ -10,45 +10,39 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class ProxyData implements ProxyDataInterface
 {
     /**
-     * @Groups({"ProxyData:output"})
-     *
      * @var string
      */
+    #[Groups(['ProxyData:output'])]
     private $identifier;
 
     /**
-     * @Groups({"ProxyData:input"})
-     *
      * @var array
      */
+    #[Groups(['ProxyData:input'])]
     private $arguments;
 
     /**
-     * @Groups({"ProxyData:output"})
-     *
      * @var mixed|null
      */
+    #[Groups(['ProxyData:output'])]
     private $data;
 
     /**
-     * @Groups({"ProxyData:output"})
-     *
      * @var array|null
      */
+    #[Groups(['ProxyData:output'])]
     private $errors;
 
     /**
-     * @Groups({"ProxyData:input"})
-     *
      * @var string
      */
+    #[Groups(['ProxyData:input'])]
     private $functionName;
 
     /**
-     * @Groups({"ProxyData:input"})
-     *
      * @var string
      */
+    #[Groups(['ProxyData:input'])]
     private $namespace;
 
     public function __construct()
