@@ -11,6 +11,7 @@ resources:
     operations:
 
       ApiPlatform\Metadata\GetCollection:
+        # FIXME: ROLE_SCOPE_API-PROXY is no longer set, this bundle needs to be ported to the new authz system
         security: "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')"
         provider: Dbp\Relay\ProxyBundle\ApiPlatform\ProxyDataProvider
         uriTemplate: "/proxydata"
@@ -18,6 +19,7 @@ resources:
           tags: ["Proxy"]
 
       ApiPlatform\Metadata\Get:
+        # FIXME: ROLE_SCOPE_API-PROXY is no longer set, this bundle needs to be ported to the new authz system
         security: "is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SCOPE_API-PROXY')"
         provider: Dbp\Relay\ProxyBundle\ApiPlatform\ProxyDataProvider
         uriTemplate: "/proxydata/{identifier}"
