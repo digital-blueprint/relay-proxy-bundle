@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.20
+
+* (breaking) bundle config: port from policies to resource permissions
+* Drop support for Psalm
+* Drop support for Symfony 5 and api-platform 3.2/3.3
+
 ## v0.1.19
 
 * Port to PHPUnit 10
