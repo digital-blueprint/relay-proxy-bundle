@@ -49,7 +49,7 @@ class ProxyDataProcessor extends AbstractController implements ProcessorInterfac
                 } elseif (Tools::isNullOrEmpty($data->getFunctionName())) {
                     throw new BadRequestException('parameter functionName must not be null nor empty');
                 } else {
-                    $this->authorizationService->denyAccessUnlessIsGranted(Configuration::MAY_POST_PROXYDATA, $data);
+                    $this->authorizationService->denyAccessUnlessIsGrantedResourcePermission(Configuration::MAY_POST_PROXYDATA, $data);
 
                     $proxyDataEvent = new ProxyDataEvent($data);
                     $this->eventDispatcher->dispatch($proxyDataEvent, ProxyDataEvent::class.'.'.$data->getNamespace());
@@ -65,7 +65,7 @@ class ProxyDataProcessor extends AbstractController implements ProcessorInterfac
             return $data;
         } elseif ($operation instanceof Delete) {
             $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-            $this->authorizationService->denyAccessUnlessIsGranted(Configuration::MAY_POST_PROXYDATA, $data);
+            $this->authorizationService->denyAccessUnlessIsGrantedResourcePermission(Configuration::MAY_POST_PROXYDATA, $data);
 
             return null;
         }
