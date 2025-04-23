@@ -4,58 +4,67 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\ProxyBundle\ApiPlatform;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\OpenApi\Model\Operation;
+use ApiPlatform\OpenApi\Model\RequestBody;
 use Dbp\Relay\CoreBundle\ProxyApi\ProxyDataInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(
+    shortName: 'ProxyData',
+    operations: [
+        new Post(
+            uriTemplate: '/proxydata',
+            openapi: new Operation(
+                tags: ['Proxy'],
+                requestBody: new RequestBody(
+                    content: new \ArrayObject([
+                        'application/ld+json' => [
+                            'schema' => [
+                                'type' => 'object',
+                            ],
+                        ],
+                    ]),
+                ),
+            ),
+            processor: ProxyDataProcessor::class
+        ),
+    ],
+    normalizationContext: [
+        'groups' => ['ProxyData:output'],
+        'jsonld_embed_context' => true,
+    ],
+    denormalizationContext: [
+        'groups' => ['ProxyData:input'],
+    ],
+)]
 class ProxyData implements ProxyDataInterface
 {
-    /**
-     * @var string
-     */
     #[Groups(['ProxyData:output'])]
-    private $identifier;
+    private ?string $identifier = null;
 
-    /**
-     * @var array
-     */
     #[Groups(['ProxyData:input'])]
-    private $arguments;
+    private array $arguments = [];
 
-    /**
-     * @var mixed|null
-     */
     #[Groups(['ProxyData:output'])]
-    private $data;
+    private mixed $data = null;
 
-    /**
-     * @var array|null
-     */
     #[Groups(['ProxyData:output'])]
-    private $errors;
+    private ?array $errors = null;
 
-    /**
-     * @var string
-     */
     #[Groups(['ProxyData:input'])]
-    private $functionName;
+    private ?string $functionName = null;
 
-    /**
-     * @var string
-     */
     #[Groups(['ProxyData:input'])]
-    private $namespace;
+    private ?string $namespace = null;
 
-    public function __construct()
-    {
-        $this->arguments = [];
-    }
-
-    public function getIdentifier(): string
+    public function getIdentifier(): ?string
     {
         return $this->identifier;
     }
 
-    public function setIdentifier(string $identifier): void
+    public function setIdentifier(?string $identifier): void
     {
         $this->identifier = $identifier;
     }
@@ -70,12 +79,12 @@ class ProxyData implements ProxyDataInterface
         $this->arguments = $arguments;
     }
 
-    public function getData()
+    public function getData(): mixed
     {
         return $this->data;
     }
 
-    public function setData($data)
+    public function setData(mixed $data): void
     {
         $this->data = $data;
     }
@@ -95,7 +104,7 @@ class ProxyData implements ProxyDataInterface
         return $this->functionName;
     }
 
-    public function setFunctionName(string $functionName): void
+    public function setFunctionName(?string $functionName): void
     {
         $this->functionName = $functionName;
     }
@@ -105,7 +114,7 @@ class ProxyData implements ProxyDataInterface
         return $this->namespace;
     }
 
-    public function setNamespace(string $namespace): void
+    public function setNamespace(?string $namespace): void
     {
         $this->namespace = $namespace;
     }

@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.21
+
+* Add support for api-platform 4.1
+* Modernize code
+
 ## v0.1.20
 
 * (breaking) bundle config: port from policies to resource permissions

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\ProxyBundle\Tests;
 
-use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class Test extends ApiTestCase
+class Test extends KernelTestCase
 {
     public function testBasics()
     {
-        $this->assertNotNull(self::createClient());
+        $this->assertNotNull($this->getContainer());
     }
 }
