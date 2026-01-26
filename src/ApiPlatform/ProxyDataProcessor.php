@@ -28,16 +28,16 @@ class ProxyDataProcessor extends AbstractDataProcessor
             throw new BadRequestException('parameter namespace must not be null nor empty');
         } elseif (Tools::isNullOrEmpty($data->getFunctionName())) {
             throw new BadRequestException('parameter functionName must not be null nor empty');
-        } else {
-            $this->authorizationService->denyAccessUnlessIsGrantedResourcePermission(Configuration::MAY_POST_PROXYDATA, $data);
-
-            $proxyDataEvent = new ProxyDataEvent($data);
-            $this->eventDispatcher->dispatch($proxyDataEvent, ProxyDataEvent::class.'.'.$data->getNamespace());
-
-            if ($proxyDataEvent->wasAcknowledged() === false) {
-                throw new BadRequestException(sprintf('unknown namespace "%s"', $data->getNamespace()));
-            }
         }
+        $this->authorizationService->denyAccessUnlessIsGrantedResourcePermission(Configuration::MAY_POST_PROXYDATA, $data);
+
+        $proxyDataEvent = new ProxyDataEvent($data);
+        $this->eventDispatcher->dispatch($proxyDataEvent, ProxyDataEvent::class.'.'.$data->getNamespace());
+
+        if ($proxyDataEvent->wasAcknowledged() === false) {
+            throw new BadRequestException(sprintf('unknown namespace "%s"', $data->getNamespace()));
+        }
+
         $data->setIdentifier($data->getNamespace().'::'.$data->getFunctionName());
 
         return $data;
